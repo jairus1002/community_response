@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poultry Disease Diagnosis</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #44aa32;
+        }
+
+
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .result-card {
+            background-color: #ffffff;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #343a40;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .response {
+            border-left: 5px solid #007bff;
+            /* Blue left border */
+            padding-left: 15px;
+            /* Padding to separate text from border */
+            color: #495057;
+            /* Dark text color for readability */
+            font-style: italic;
+            /* Italic text for emphasis */
+            margin-top: 10px;
+            /* Margin above the response */
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #6c757d;
+            /* Lighter text color for the footer */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">Poultry Disease Diagnosis</h1>
+        <form id="symptomForm" action="{{ url_for('get_disease_info') }}" method="POST">
+            <div class="form-group">
+                <label for="symptoms">Enter the symptoms of the poultry disease:</label>
+                <input type="text" class="form-control" id="symptoms" name="symptoms" placeholder="e.g. coughing, loss of appetite, etc." required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Get Disease Information</button>
+        </form>
+
+        <div class="result-card" id="result">
+            {% if generated_text %}
+                <h3 class="mt-3">Possible Disease Information:</h3>
+                <p class="response">{{ generated_text }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Poultry Health Monitoring System</p>
+    </footer>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
